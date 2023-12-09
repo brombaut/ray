@@ -1,0 +1,37 @@
+group: ":kubernetes: k8s tests"
+steps:
+  - name: k8sbuild
+    wanda: ci/docker/k8s.build.wanda.yaml
+    depends_on:
+      - oss-ci-base_build
+
+  - label: ":kubernetes: operator"
+    tags:
+      - python
+      - docker
+    instance_size: medium
+    commands:
+      # Build ray container image
+      - bazel run //ci/ray_ci:build_in_docker -- docker --python-version 3.8 --platform cpu
+        --canonical-tag kuberay-test
+      - docker tag rayproject/ray:kuberay-test ray-ci:kuberay-test
+      # Build ray for testing
+      - (cd dashboard/client && npm ci && npm run build)
+      - pip install -e python
+      - bash ci/k8s/prep-k8s-environment.sh
+      - kind load docker-image ray-ci:kuberay-test
+      - echo "--- Setting up KubeRay operator."
+      - python python/ray/tests/kuberay/setup/setup_kuberay.py
+      - echo "--- Running the test."
+      - bazel test --config=ci $(./ci/run/bazel_export_options)
+        --test_tag_filters=kuberay_operator
+        --test_env=RAY_IMAGE=docker.io/library/ray-ci:kuberay-test
+        --test_env=PULL_POLICY=Never
+        --test_env=KUBECONFIG=/root/.kube/config
+        python/ray/tests/...
+    job_env: k8sbuild
+    depends_on:
+      - k8sbuild
+      - manylinux
+      - forge
+      - raycpubase
