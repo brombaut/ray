@@ -13,7 +13,7 @@ set -euo pipefail
 
 curl -sfL "https://github.com/kubernetes-sigs/kind/releases/download/v0.11.1/kind-linux-amd64" -o /usr/local/bin/kind
 chmod +x /usr/local/bin/kind
-kind --help
+kind version
 
 curl -sfL "https://dl.k8s.io/release/v1.28.4/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
 chmod +x /usr/local/bin/kubectl
