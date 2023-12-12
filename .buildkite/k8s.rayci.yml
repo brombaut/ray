@@ -17,9 +17,9 @@ steps:
       - bazel run //ci/ray_ci:test_in_docker -- //python/ray/tests/... serverless
         --build-name k8sbuild
         --only-tags kuberay_operator
-        --test_env=RAY_IMAGE=docker.io/rayproject/ray:kuberay-test
-        --test_env=PULL_POLICY=Never
-        --test_env=KUBECONFIG=/root/.kube/config
+        --test-env=RAY_IMAGE=docker.io/rayproject/ray:kuberay-test
+        --test-env=PULL_POLICY=Never
+        --test-env=KUBECONFIG=/root/.kube/config
     depends_on:
       - k8sbuild
       - manylinux
