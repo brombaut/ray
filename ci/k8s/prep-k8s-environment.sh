@@ -23,7 +23,7 @@ fi
 if [[ ! -f /usr/local/bin/kustomize ]]; then
     echo "--- Installing kustomize"
     curl -sfL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.2.1/kustomize_v5.2.1_linux_amd64.tar.gz" \
-        | tar -xzf -C /usr/local/bin kustomize
+        | tar -x -C /usr/local/bin kustomize
 fi
 
 set -x # Be more verbose now.

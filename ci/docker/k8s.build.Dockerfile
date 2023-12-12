@@ -20,7 +20,7 @@ chmod +x /usr/local/bin/kubectl
 kubectl version --client
 
 curl -sfL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.2.1/kustomize_v5.2.1_linux_amd64.tar.gz" \
-    | tar -xzf -C /usr/local/bin kustomize
+    | tar -x -C /usr/local/bin kustomize
 
 pip install -U --ignore-installed \
     -r python/requirements.txt -c python/requirements_compiled.txt \
