@@ -366,7 +366,7 @@ class KubeRayAutoscalingTest(unittest.TestCase):
         wait_for_pods(goal_num_pods=0, namespace=RAY_CLUSTER_NAMESPACE)
 
 
-_KIND_CONFIG = '''
+_KIND_CONFIG = """
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 networking:
@@ -384,7 +384,7 @@ nodes:
     apiServer:
       certSANs:
         - "docker"
-'''
+"""
 
 
 if __name__ == "__main__":
