@@ -2,9 +2,9 @@ import copy
 import logging
 import os
 import pytest
+import subprocess
 import tempfile
 import unittest
-import subprocess
 
 from typing import Any, Dict
 
@@ -16,6 +16,7 @@ from ray.tests.kuberay.utils import (
     get_raycluster,
     ray_client_port_forward,
     ray_job_submit,
+    setup_kuberay_operator,
     switch_to_ray_parent_dir,
     kubectl_exec_python_script,
     kubectl_logs,
@@ -23,6 +24,7 @@ from ray.tests.kuberay.utils import (
     wait_for_pods,
     wait_for_pod_to_start,
     wait_for_ray_health,
+    wait_for_raycluster_crd,
 )
 
 from ray.tests.kuberay.scripts import (
@@ -364,8 +366,44 @@ class KubeRayAutoscalingTest(unittest.TestCase):
         wait_for_pods(goal_num_pods=0, namespace=RAY_CLUSTER_NAMESPACE)
 
 
+_KIND_CONFIG = '''
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+networking:
+  apiServerAddress: "0.0.0.0"
+  # Ensure stable port so we can rewrite the server address later
+  apiServerPort: 6443
+
+# Adding this so containers from the same docker network can access it
+# https://blog.scottlowe.org/2019/07/30/adding-a-name-to-kubernetes-api-server-certificate/
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+      certSANs:
+        - "docker"
+'''
+
+
 if __name__ == "__main__":
     import pytest
     import sys
+
+    with tempfile.NamedTemporaryFile("w") as kind_config_file:
+        kind_config_file.write(_KIND_CONFIG)
+        kind_config_file.flush()
+
+        for cmds in [
+            "kind delete clusters --all",
+            "kind create cluster --wait 120s --config {}".format(kind_config_file.name),
+            "kubectl config set clusters.kind-kind.server https://docker:6443",
+            "kind load docker-image {}".format(RAY_IMAGE),
+        ]:
+            subprocess.check_call(cmds.split(), stdout=sys.stdout, stderr=sys.stderr)
+
+    setup_kuberay_operator()
+    wait_for_raycluster_crd()
 
     sys.exit(pytest.main(["-vv", __file__]))
