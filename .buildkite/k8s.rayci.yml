@@ -20,6 +20,7 @@ steps:
         --test-env=RAY_IMAGE=docker.io/rayproject/ray:kuberay-test
         --test-env=PULL_POLICY=Never
         --test-env=KUBECONFIG=/root/.kube/config
+        --test-env=RAY_TEST_SETUP_KUBERAY=1
     depends_on:
       - k8sbuild
       - manylinux

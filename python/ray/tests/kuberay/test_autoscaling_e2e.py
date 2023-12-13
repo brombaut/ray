@@ -387,10 +387,7 @@ nodes:
 """
 
 
-if __name__ == "__main__":
-    import pytest
-    import sys
-
+def _setup_kuberay():
     with tempfile.NamedTemporaryFile("w") as kind_config_file:
         kind_config_file.write(_KIND_CONFIG)
         kind_config_file.flush()
@@ -405,5 +402,13 @@ if __name__ == "__main__":
 
     setup_kuberay_operator()
     wait_for_raycluster_crd()
+
+
+if __name__ == "__main__":
+    import pytest
+    import sys
+
+    if os.environ.get("RAY_TEST_SETUP_KUBERAY", "0") == "1":
+        _setup_kuberay()
 
     sys.exit(pytest.main(["-vv", __file__]))

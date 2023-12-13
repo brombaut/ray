@@ -16,10 +16,12 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 DIR=$(mktemp -d -t "kuberay-XXXXXX")
 
-pushd "$DIR" || exit
+(
+    cd "$DIR"
     git clone https://github.com/ray-project/kuberay/ --branch "$KUBERAY_BRANCH" --depth 1
-    pushd kuberay/ray-operator/config/default || exit
+    (
+        cd kuberay/ray-operator/config/default
         kustomize edit set image kuberay/operator=kuberay/operator:"$OPERATOR_TAG"
-    popd || exit
+    )
     cp -r kuberay/ray-operator/config "$SCRIPT_DIR/"
-popd || exit
+)
