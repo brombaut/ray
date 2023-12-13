@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Clone pinned KubeRay commit to temporary directory, copy the CRD definitions
 # into the autoscaler folder.
 KUBERAY_BRANCH="v1.0.0"
