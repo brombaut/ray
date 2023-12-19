@@ -37,6 +37,7 @@ struct MemoryStoreStats {
 class GetRequest;
 class CoreWorkerMemoryStore;
 
+// BEN: CoreWorkerMemoryStore definition - implementations for local process memory store
 /// The class provides implementations for local process memory store.
 /// An example usage for this is to retrieve the returned objects from direct
 /// actor call (see direct_actor_transport.cc).

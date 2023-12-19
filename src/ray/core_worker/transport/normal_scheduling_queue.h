@@ -27,6 +27,7 @@
 namespace ray {
 namespace core {
 
+// BEN: NormalSchedulingQueue definition - implements non-actor task queue
 /// Used to implement the non-actor task queue. These tasks do not have ordering
 /// constraints.
 class NormalSchedulingQueue : public SchedulingQueue {

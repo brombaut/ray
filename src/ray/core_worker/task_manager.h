@@ -189,6 +189,7 @@ class ObjectRefStream {
   int64_t total_num_object_consumed_;
 };
 
+// BEN: TaskManager definition
 class TaskManager : public TaskFinisherInterface, public TaskResubmissionInterface {
  public:
   TaskManager(std::shared_ptr<CoreWorkerMemoryStore> in_memory_store,

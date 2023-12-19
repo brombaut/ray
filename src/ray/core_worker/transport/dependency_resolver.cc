@@ -62,6 +62,7 @@ void LocalDependencyResolver::CancelDependencyResolution(const TaskID &task_id) 
   pending_tasks_.erase(task_id);
 }
 
+// BEN: LocalDependencyResolver::ResolveDependencies()
 void LocalDependencyResolver::ResolveDependencies(
     TaskSpecification &task, std::function<void(Status)> on_dependencies_resolved) {
   std::unordered_set<ObjectID> local_dependency_ids;

@@ -22,6 +22,7 @@
 namespace ray {
 namespace core {
 
+// BEN: SchedulingQueue definition
 /// Used to implement task queueing at the worker. Abstraction to provide a common
 /// interface for actor tasks as well as normal ones.
 class SchedulingQueue {

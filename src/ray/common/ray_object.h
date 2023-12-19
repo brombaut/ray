@@ -23,6 +23,7 @@
 
 namespace ray {
 
+// BEN: RayObject definition
 /// Binary representation of a ray object, consisting of buffer pointers to data and
 /// metadata. A ray object may have both data and metadata, or only one of them.
 class RayObject {

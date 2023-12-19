@@ -29,6 +29,7 @@ namespace core {
 using ReportLocalityDataCallback =
     std::function<void(const ObjectID &, const absl::flat_hash_set<NodeID> &, uint64_t)>;
 
+// BEN: FutureResolver definition
 // Resolve values for futures that were given to us before the value
 // was available. This class is thread-safe.
 class FutureResolver {

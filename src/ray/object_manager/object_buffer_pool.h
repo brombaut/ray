@@ -31,6 +31,7 @@
 
 namespace ray {
 
+// BEN: ObjectBufferPool definition
 /// \class ObjectBufferPool Exposes chunks of object buffers for use by the ObjectManager.
 class ObjectBufferPool {
  public:

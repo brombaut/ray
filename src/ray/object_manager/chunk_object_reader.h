@@ -18,6 +18,7 @@
 
 namespace ray {
 
+// BEN: ChunkObjectReader definition
 /// Read object in chunks.
 class ChunkObjectReader {
  public:

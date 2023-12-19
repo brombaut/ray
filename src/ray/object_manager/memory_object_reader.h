@@ -19,6 +19,7 @@
 
 namespace ray {
 
+// BEN: MemoryObjectReader definition
 /// A wrapper over plasma object. Please reader ray/object_manager/object_reader.h
 /// for interface guanrantees. This class is thread safe.
 class MemoryObjectReader : public IObjectReader {

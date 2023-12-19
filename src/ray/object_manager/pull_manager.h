@@ -49,6 +49,7 @@ enum BundlePriority {
 };
 
 // Not thread-safe except for IsObjectActive().
+// BEN: PullManager definition
 class PullManager {
  public:
   /// PullManager is responsible for managing the policy around when to send pull requests

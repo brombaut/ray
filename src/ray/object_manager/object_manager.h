@@ -114,6 +114,7 @@ class ObjectManagerInterface {
 };
 
 // TODO(hme): Add success/failure callbacks for push and pull.
+// BEN: ObjectManager definition
 class ObjectManager : public ObjectManagerInterface,
                       public rpc::ObjectManagerServiceHandler {
  public:

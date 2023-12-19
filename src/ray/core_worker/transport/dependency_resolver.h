@@ -26,6 +26,7 @@ namespace ray {
 namespace core {
 
 // This class is thread-safe.
+// BEN: LocalDependencyResolver definition
 class LocalDependencyResolver {
  public:
   LocalDependencyResolver(CoreWorkerMemoryStore &store,

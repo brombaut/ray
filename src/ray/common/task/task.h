@@ -23,6 +23,7 @@ namespace ray {
 
 typedef std::function<void()> CancelTaskCallback;
 
+// BEN: RayTask definition
 /// \class RayTask
 ///
 /// A RayTask represents a Ray task and a specification of its execution (e.g.,

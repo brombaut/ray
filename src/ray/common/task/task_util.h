@@ -37,6 +37,7 @@ struct TaskFailureEntry {
         should_retry(should_retry) {}
 };
 
+// BEN: TaskArg interface definition
 /// Argument of a task.
 class TaskArg {
  public:
@@ -44,6 +45,7 @@ class TaskArg {
   virtual ~TaskArg(){};
 };
 
+// BEN: TaskArgByReference definition
 class TaskArgByReference : public TaskArg {
  public:
   /// Create a pass-by-reference task argument.
@@ -69,6 +71,7 @@ class TaskArgByReference : public TaskArg {
   const std::string call_site_;
 };
 
+// BEN: TaskArgByValue definition
 class TaskArgByValue : public TaskArg {
  public:
   /// Create a pass-by-value task argument.

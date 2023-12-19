@@ -28,6 +28,7 @@ namespace ray {
 
 namespace gcs {
 
+// BEN: StoreClient interface definition
 /// \class StoreClient
 /// Abstract interface of the storage client.
 class StoreClient {

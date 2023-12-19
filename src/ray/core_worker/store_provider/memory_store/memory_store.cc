@@ -160,8 +160,10 @@ CoreWorkerMemoryStore::CoreWorkerMemoryStore(
       unhandled_exception_handler_(unhandled_exception_handler),
       object_allocator_(std::move(object_allocator)) {}
 
+// BEN: CoreWorkerMemoryStore::GetAsync()
 void CoreWorkerMemoryStore::GetAsync(
     const ObjectID &object_id, std::function<void(std::shared_ptr<RayObject>)> callback) {
+  RAY_LOG(DEBUG) << "CoreWorkerMemoryStore::GetAsync ObjectID=" << object_id;
   std::shared_ptr<RayObject> ptr;
   {
     absl::MutexLock lock(&mu_);

@@ -58,6 +58,7 @@ class CoreWorker;
 ///    when the task execution loop is terminated from each core worker instance.
 ///    Core worker ensures this by having a strong check there.
 ///
+// BEN: CoreWorkerProcess definition
 class CoreWorkerProcess {
  public:
   ///
@@ -109,7 +110,7 @@ class CoreWorkerProcess {
 
   static void HandleAtExit();
 };
-
+// BEN: CoreWorkerProcessImpl definition
 class CoreWorkerProcessImpl {
  public:
   /// Create an `CoreWorkerProcessImpl` with proper options.

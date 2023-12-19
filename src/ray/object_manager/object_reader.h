@@ -18,6 +18,7 @@
 
 namespace ray {
 
+// BEN: IObjectReader definition - Reader over an immutable Ray object.
 /// Reader over an immutable Ray object.
 class IObjectReader {
  public:

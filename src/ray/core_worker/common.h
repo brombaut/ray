@@ -42,6 +42,7 @@ void SerializeReturnObject(const ObjectID &object_id,
                            const std::shared_ptr<RayObject> &return_object,
                            rpc::ReturnObject *return_object_proto);
 
+// BEN: RayFunction definition - Information about a remote function.
 /// Information about a remote function.
 class RayFunction {
  public:
@@ -58,6 +59,7 @@ class RayFunction {
   FunctionDescriptor function_descriptor_;
 };
 
+// BEN: TaskOptions definition - Options for all tasks (actor and non-actor) except for actor creation.
 /// Options for all tasks (actor and non-actor) except for actor creation.
 struct TaskOptions {
   TaskOptions() {}
@@ -206,6 +208,7 @@ struct PlacementGroupCreationOptions {
   const double max_cpu_fraction_per_node;
 };
 
+// BEN: ObjectLocation definition
 class ObjectLocation {
  public:
   ObjectLocation(NodeID primary_node_id,

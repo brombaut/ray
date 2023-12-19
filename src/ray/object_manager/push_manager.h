@@ -27,6 +27,7 @@
 namespace ray {
 
 /// Manages rate limiting and deduplication of outbound object pushes.
+// BEN: PushManager definition
 class PushManager {
  public:
   /// Create a push manager.

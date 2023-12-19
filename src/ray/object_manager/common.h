@@ -37,6 +37,7 @@ using RestoreSpilledObjectCallback =
                        std::function<void(const ray::Status &)>)>;
 
 /// A struct that includes info about the object.
+// BEN: ObjectInfo definition
 struct ObjectInfo {
   ObjectID object_id;
   int64_t data_size = 0;
